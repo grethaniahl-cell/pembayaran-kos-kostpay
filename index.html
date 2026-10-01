@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f0">
+  <title>KostPay — Pembayaran Kos</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" data-page="dashboard" aria-label="KostPay Dashboard">
+        <svg class="brand-mark" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="90" height="90" rx="27" fill="#DDF1DC"/>
+          <path d="M20 43.5 47.5 21 76 43.5v29a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4v-29Z" fill="#FFFDF8" stroke="#44684E" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M38 76V54h20v22" fill="#F4D8E4" stroke="#44684E" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M28 47h11v11H28zM58 47h11v11H58z" fill="#D8EBD6" stroke="#44684E" stroke-width="2.5"/>
+          <rect x="50" y="31" width="28" height="17" rx="5" transform="rotate(-10 50 31)" fill="#F3C4D6" stroke="#44684E" stroke-width="2.5"/>
+          <circle cx="64" cy="37" r="4" fill="#FFFDF8" stroke="#44684E" stroke-width="2"/>
+          <path d="m16 28 2.5-5 2.5 5 5 2.5-5 2.5-2.5 5-2.5-5-5-2.5 5-2.5Z" fill="#E8B94D"/>
+        </svg>
+        <span><strong>KostPay</strong><small>kelola kos dengan mudah</small></span>
+      </a>
+      <div class="nav-label">MENU UTAMA</div>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <button class="nav-link active" data-page="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
+      </nav>
+      <div class="nav-label master-label">DATA MASTER</div>
+      <nav class="main-nav" aria-label="Data master">
+        <button class="nav-link" data-page="rooms"><span class="nav-icon">⌂</span>Kamar</button>
+        <button class="nav-link" data-page="tenants"><span class="nav-icon">♡</span>Penghuni</button>
+        <button class="nav-link" data-page="invoices"><span class="nav-icon">▤</span>Tagihan</button>
+        <button class="nav-link" data-page="payments"><span class="nav-icon">◉</span>Pembayaran</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="note-flower">✿</span><strong>Kos rapi, hati happy</strong><span>Keuangan terpantau, penghuni nyaman.</span></div>
+        <button class="settings-button" id="settings-button"><span aria-hidden="true">⚙</span> Pengaturan Supabase <span class="settings-arrow" aria-hidden="true">↗</span></button>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div class="breadcrumb"><span>KostPay</span><span class="crumb-divider">/</span><strong id="section-label">Dashboard</strong></div><div class="topbar-right"><button class="avatar-button" id="settings-button-top" aria-label="Pengaturan Supabase" title="Pengaturan Supabase">K</button></div></header>
+      <div class="content-area"><div id="app" aria-live="polite"></div></div>
+      <footer class="page-footer"><span>KostPay</span><span>dibuat untuk hunian yang lebih nyaman <b>✿</b></span></footer>
+    </main>
+  </div>
+  <dialog class="modal settings-modal" id="settings-modal">
+    <form id="settings-form" class="modal-card">
+      <button type="button" class="dialog-close" id="settings-close" aria-label="Tutup">×</button>
+      <span class="eyebrow">Koneksi database</span><h2>Hubungkan Supabase</h2>
+      <p class="modal-intro">Masukkan detail project Supabase untuk mulai memuat data KostPay.</p>
+      <label class="form-field"><span>Project URL</span><input id="settings-url" type="url" placeholder="https://project-ref.supabase.co" required autocomplete="url"></label>
+      <label class="form-field"><span>Publishable Key</span><input id="settings-key" type="password" placeholder="sb_publishable_..." required autocomplete="off"></label>
+      <p class="security-note"><span aria-hidden="true">✳</span> Publishable Key dipakai oleh frontend. Jangan pernah memasukkan service_role key.</p>
+      <div class="form-actions"><button type="button" class="quiet-button" id="reset-settings">Gunakan konfigurasi bawaan</button><button class="primary-button" type="submit">Simpan koneksi <span aria-hidden="true">→</span></button></div>
+    </form>
+  </dialog>
+  <dialog class="modal record-modal" id="modal">
+    <div class="modal-card"><button type="button" class="dialog-close" id="modal-close" aria-label="Tutup">×</button><span class="eyebrow">Data KostPay</span><h2 id="modal-title">Tambah data</h2><div id="modal-content"></div></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
